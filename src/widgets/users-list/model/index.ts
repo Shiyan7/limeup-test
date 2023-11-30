@@ -1,1 +1,2 @@
-export { usersModel } from "./users-model";
+export * from "./users-model";
+export * from "./user-model";

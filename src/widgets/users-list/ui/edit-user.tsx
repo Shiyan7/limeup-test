@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Flex, Modal, Input, Button } from "@mantine/core";
 import { usersModel } from "../model";
-import { User } from "../api";
+import { User } from "../types";
 
 interface EditNameProps {
   opened: boolean;
@@ -12,8 +12,8 @@ interface EditNameProps {
 export const EditUser = ({ opened, close, user }: EditNameProps) => {
   const [name, setName] = useState(user.name);
 
-  const handleEditName = (id: number) => () => {
-    usersModel.editName(id, name);
+  const handleEditName = () => {
+    usersModel.editName(user, name);
     close();
   };
 
@@ -34,7 +34,7 @@ export const EditUser = ({ opened, close, user }: EditNameProps) => {
           onChange={(e) => setName(e.target.value)}
           placeholder="Изменить имя пользователя"
         />
-        <Button ml="auto" onClick={handleEditName(user.id)}>
+        <Button ml="auto" onClick={handleEditName}>
           Save
         </Button>
       </Flex>

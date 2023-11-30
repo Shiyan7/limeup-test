@@ -4,8 +4,8 @@ import { useDisclosure } from "@mantine/hooks";
 import { Group, Text, ActionIcon, Paper, Overlay } from "@mantine/core";
 import { IconEdit, IconTrash, IconPower } from "@tabler/icons-react";
 import { usersModel } from "../model";
-import type { User } from "../api";
 import { EditUser } from "./edit-user";
+import { User } from "../types";
 
 interface UserProps {
   user: User;
@@ -20,7 +20,7 @@ export const UserCard = observer(({ user, index }: UserProps) => {
   const actions = [
     { onClick: openEditModal, icon: <IconEdit /> },
     {
-      onClick: () => usersModel.deleteUser(user.id),
+      onClick: () => usersModel.deleteUser(user),
       color: "red",
       icon: <IconTrash />,
     },
